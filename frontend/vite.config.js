@@ -9,7 +9,8 @@ export default defineConfig({
     port: 3000,
     proxy: {
       "/api": {
-        target: "https://dead-tan-anemone-sari.cyclic.app:5000",
+        // target: "https://dead-tan-anemone-sari.cyclic.app:5000",
+        target: "http://localhost:5000",
         changeOrigin: true,
         secure: false,
       },
