@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // const addToCart = async ({ productId, qty }) => {
-//   const { data } = await axios.get(`/api/products/${productId}`);
+//   const { data } = await axios.get(`${import.meta.env.VITE_APP_API}/api/products/${productId}`);
 //   console.log("xxxxxxxx", data);
 
 //   //   dispatch({
@@ -34,7 +34,9 @@ export const addToCart = createAsyncThunk(
   "user/addToCart",
   async ({ productId, qty }, thunkAPI) => {
     try {
-      const { data } = await axios.get(`/api/products/${productId}`);
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_APP_API}/api/products/${productId}`
+      );
       console.log("xxxxxxxx", data);
 
       //   dispatch({

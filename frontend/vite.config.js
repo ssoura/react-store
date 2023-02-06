@@ -7,14 +7,7 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [react()],
     server: {
-      host: true,
-      proxy: {
-        "/api": {
-          target: env.VITE_APP_API,
-          changeOrigin: true,
-          secure: true,
-        },
-      },
+      host: "0.0.0.0",
     },
   };
 });

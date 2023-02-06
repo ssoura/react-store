@@ -39,7 +39,7 @@ import axios from "axios";
 //       Authorization: `Bearer ${userInfo.token}`,
 //     },
 //   };
-//   const { data } = await axios.get(`/api/users/${id}`, config);
+//   const { data } = await axios.get(`${import.meta.env.VITE_APP_API}/api/users/${id}`, config);
 //   return data;
 // };
 
@@ -117,7 +117,10 @@ export const getUserDetails = createAsyncThunk(
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-      const { data } = await axios.get(`/api/users/${id}`, config);
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_APP_API}/api/users/${id}`,
+        config
+      );
       return data;
     } catch (error) {
       const message =
@@ -146,7 +149,11 @@ export const updateUserProfile = createAsyncThunk(
         },
       };
 
-      const { data } = await axios.put(`/api/users/profile`, user, config);
+      const { data } = await axios.put(
+        `${import.meta.env.VITE_APP_API}/api/users/profile`,
+        user,
+        config
+      );
       // dispatch({
       //   type: USER_LOGIN_SUCCESS,
       //   payload: data,
@@ -183,7 +190,10 @@ export const listUsers = createAsyncThunk(
         },
       };
 
-      const { data } = await axios.get(`/api/users`, config);
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_APP_API}/api/users`,
+        config
+      );
 
       dispatch({
         type: USER_LIST_SUCCESS,
@@ -222,7 +232,10 @@ export const deleteUser = createAsyncThunk(
         },
       };
 
-      await axios.delete(`/api/users/${id}`, config);
+      await axios.delete(
+        `${import.meta.env.VITE_APP_API}/api/users/${id}`,
+        config
+      );
 
       dispatch({ type: USER_DELETE_SUCCESS });
     } catch (error) {
@@ -255,7 +268,11 @@ export const updateUser = createAsyncThunk(
         },
       };
 
-      const { data } = await axios.put(`/api/users/${user._id}`, user, config);
+      const { data } = await axios.put(
+        `${import.meta.env.VITE_APP_API}/api/users/${user._id}`,
+        user,
+        config
+      );
 
       // dispatch({ type: USER_UPDATE_SUCCESS });
 

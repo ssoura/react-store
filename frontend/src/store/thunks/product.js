@@ -13,12 +13,12 @@ import axios from "axios";
 //     },
 //   };
 
-//   await axios.delete(`/api/products/${id}`, config);
+//   await axios.delete(`${import.meta.env.VITE_APP_API}/api/products/${id}`, config);
 // };
 
 // export const listProducts = async ({ keyword = "", pageNumber = "" }) => {
 //   const { data } = await axios.get(
-//     `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
+//     `${import.meta.env.VITE_APP_API}/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
 //   );
 
 //   return data;
@@ -28,7 +28,9 @@ export const productList = createAsyncThunk(
   async ({ keyword = "", pageNumber = "" }, thunkAPI) => {
     try {
       const { data } = await axios.get(
-        `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
+        `${
+          import.meta.env.VITE_APP_API
+        }/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
       );
       return data;
     } catch (error) {
@@ -44,14 +46,16 @@ export const productList = createAsyncThunk(
   }
 );
 // export const listProductDetails = async (id) => {
-//   const { data } = await axios.get(`/api/products/${id}`);
+//   const { data } = await axios.get(`${import.meta.env.VITE_APP_API}/api/products/${id}`);
 //   return data;
 // };
 export const productDetails = createAsyncThunk(
   "product/productDetails",
   async (id, thunkAPI) => {
     try {
-      const { data } = await axios.get(`/api/products/${id}`);
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_APP_API}/api/products/${id}`
+      );
       return data;
     } catch (error) {
       const message =
@@ -77,7 +81,7 @@ export const productDetails = createAsyncThunk(
 //     },
 //   };
 
-//   const { data } = await axios.post(`/api/products`, {}, config);
+//   const { data } = await axios.post(`${import.meta.env.VITE_APP_API}/api/products`, {}, config);
 //   return data;
 // };
 
@@ -95,7 +99,11 @@ export const productCreate = createAsyncThunk(
         },
       };
 
-      const { data } = await axios.post(`/api/products`, {}, config);
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_APP_API}/api/products`,
+        {},
+        config
+      );
       return data;
     } catch (error) {
       const message =
@@ -123,7 +131,7 @@ export const productCreate = createAsyncThunk(
 //   };
 
 //   const { data } = await axios.put(
-//     `/api/products/${product._id}`,
+//     `${import.meta.env.VITE_APP_API}/api/products/${product._id}`,
 //     product,
 //     config
 //   );
@@ -145,7 +153,7 @@ export const productUpdate = createAsyncThunk(
       };
 
       const { data } = await axios.put(
-        `/api/products/${product._id}`,
+        `${import.meta.env.VITE_APP_API}/api/products/${product._id}`,
         product,
         config
       );
@@ -177,7 +185,10 @@ export const productDelete = createAsyncThunk(
         },
       };
 
-      await axios.delete(`/api/products/${id}`, config);
+      await axios.delete(
+        `${import.meta.env.VITE_APP_API}/api/products/${id}`,
+        config
+      );
     } catch (error) {
       const message =
         (error.response &&
@@ -194,7 +205,9 @@ export const productTopRated = createAsyncThunk(
   "product/productTopRated",
   async (thunkAPI) => {
     try {
-      const { data } = await axios.get(`/api/products/top`);
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_APP_API}/api/products/top`
+      );
       return data;
     } catch (error) {
       const message =
@@ -221,7 +234,7 @@ export const productTopRated = createAsyncThunk(
 //     },
 //   };
 
-//   await axios.post(`/api/products/${productId}/reviews`, review, config);
+//   await axios.post(`${import.meta.env.VITE_APP_API}/api/products/${productId}/reviews`, review, config);
 // };
 export const productReviewCreate = createAsyncThunk(
   "product/productReviewCreate",
@@ -238,7 +251,11 @@ export const productReviewCreate = createAsyncThunk(
         },
       };
 
-      await axios.post(`/api/products/${productId}/reviews`, review, config);
+      await axios.post(
+        `${import.meta.env.VITE_APP_API}/api/products/${productId}/reviews`,
+        review,
+        config
+      );
     } catch (error) {
       const message =
         (error.response &&
