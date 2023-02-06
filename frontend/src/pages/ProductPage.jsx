@@ -14,10 +14,7 @@ import Rating from "../components/Rating";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import Meta from "../components/Meta";
-import {
-  productDetails,
-  productReviewCreate,
-} from "../features/product/productSlice";
+import { productDetails, productReviewCreate } from "../store";
 
 const ProductPage = () => {
   const history = useNavigate();

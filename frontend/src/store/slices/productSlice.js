@@ -1,113 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import productService from "./productService";
-
-export const productList = createAsyncThunk(
-  "product/productList",
-  async ({ data }, thunkAPI) => {
-    try {
-      return await productService.listProducts({ data });
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
-
-export const productDetails = createAsyncThunk(
-  "product/productDetails",
-  async (id, thunkAPI) => {
-    try {
-      return await productService.listProductDetails(id);
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
-
-export const productCreate = createAsyncThunk(
-  "product/productCreate",
-  async (id, thunkAPI) => {
-    try {
-      return await productService.deleteProduct(id);
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
-
-export const productUpdate = createAsyncThunk(
-  "product/productUpdate",
-  async (id, thunkAPI) => {
-    try {
-      return await productService.createProduct(id);
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
-
-export const productTopRated = createAsyncThunk(
-  "product/productTopRated",
-  async (thunkAPI) => {
-    try {
-      return await productService.productTopRated();
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
-
-export const productReviewCreate = createAsyncThunk(
-  "product/productReviewCreate",
-  async (productId, review, thunkAPI) => {
-    try {
-      return await productService.productReviewCreate(productId, review);
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
+import {
+  productList,
+  productDetails,
+  productCreate,
+  productUpdate,
+  productDelete,
+  productTopRated,
+  productReviewCreate,
+} from "../thunks/product";
 
 const initialState = {
   products: [],

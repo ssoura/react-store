@@ -11,11 +11,8 @@ import {
   Card,
 } from "react-bootstrap";
 import Message from "../components/Message";
-import {
-  addToCart,
-  removeFromCart,
-  clearItem,
-} from "../features/cart/cartSlice";
+import { addToCart } from "../store";
+import { removeFromCart, clearItem } from "../store/slices/cartSlice";
 
 const CartPage = () => {
   const { id: productId } = useParams();

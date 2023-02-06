@@ -6,7 +6,7 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 
 // import { listMyOrders } from "../actions/orderActions";
-import { getUserDetails, updateUserProfile } from "../features/user/userSlice";
+import { getUserDetails, updateUserProfile } from "../store";
 // import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
 
 const ProfilePage = ({ location, history }) => {

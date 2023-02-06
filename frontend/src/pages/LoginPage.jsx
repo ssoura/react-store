@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
-import { login } from "../features/user/userSlice";
+import { login } from "../store";
 import { useLocation } from "react-router-dom";
 
 const LoginPage = () => {

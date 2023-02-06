@@ -6,12 +6,9 @@ import { Row, Col, ListGroup, Image, Card, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import {
-  getOrderDetails,
-  payOrder,
-  deliverOrder,
-  PayOrderReset,
-} from "../features/order/orderSlice";
+import { getOrderDetails, payOrder, deliverOrder } from "../store";
+
+import { PayOrderReset } from "../store/slices/orderSlice";
 // import {
 //   ORDER_PAY_RESET,
 //   ORDER_DELIVER_RESET,

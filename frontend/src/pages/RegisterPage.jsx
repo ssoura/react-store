@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
-import { register } from "../features/user/userSlice";
+import { register } from "../store";
 
 const RegisterPage = () => {
   const location = useLocation();

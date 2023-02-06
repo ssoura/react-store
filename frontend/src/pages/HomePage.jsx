@@ -8,7 +8,7 @@ import Loader from "../components/Loader";
 import Paginate from "../components/Paginate";
 import ProductCarousel from "../components/ProductCarousel";
 import Meta from "../components/Meta";
-import { productList } from "../features/product/productSlice";
+import { productList } from "../store";
 
 const HomePage = () => {
   const { keyword, pageNumber: pn } = useParams;
