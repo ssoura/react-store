@@ -56,7 +56,7 @@ export const register = createAsyncThunk(
       };
 
       const { data } = await axios.post(
-        "/api/users",
+        `${import.meta.env.VITE_APP_API}/api/users`,
         { name, email, password },
         config
       );
@@ -86,7 +86,7 @@ export const login = createAsyncThunk(
       };
 
       const { data } = await axios.post(
-        "/api/users/login",
+        `${import.meta.env.VITE_APP_API}/api/users/login`,
         { email, password },
         config
       );

@@ -65,7 +65,11 @@ const ProductEditPage = ({ match, history }) => {
         },
       };
 
-      const { data } = await axios.post("/api/upload", formData, config);
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_APP_API}/api/upload`,
+        formData,
+        config
+      );
 
       setImage(data);
       setUploading(false);
