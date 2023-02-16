@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { HiHome } from "react-icons/hi";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -72,25 +73,28 @@ const ProductPage = () => {
 
   return (
     <>
-      <Link className="btn btn-light my-3" to="/">
-        Go Back
-      </Link>
+      <Meta title={product.name} />
+      <h3 className="text-4xl p-1">{product.name}</h3>
+      <div className="flex my-3 text-lg">
+        <HiHome className="my-1" />
+        {" / "}
+        <Link className="mx-3" to="/">
+          Home
+        </Link>
+      </div>
       {loading ? (
         <Loader />
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
         <>
-          <Meta title={product.name} />
           <Row>
             <Col md={6}>
               <Image src={product.image} alt={product.name} fluid />
             </Col>
             <Col md={3}>
               <ListGroup variant="flush">
-                <ListGroup.Item>
-                  <h3>{product.name}</h3>
-                </ListGroup.Item>
+                <ListGroup.Item>{/* <h3>{product.name}</h3> */}</ListGroup.Item>
                 <ListGroup.Item>
                   <Rating
                     value={product.rating}
@@ -162,7 +166,7 @@ const ProductPage = () => {
             </Col>
           </Row>
           <Row>
-            <Col md={6}>
+            <Col md={12}>
               <h2>Reviews</h2>
               {product.reviews.length === 0 && <Message>No Reviews</Message>}
               <ListGroup variant="flush">

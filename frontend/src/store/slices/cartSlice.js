@@ -37,7 +37,6 @@ export const cartSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(addToCart.fulfilled, (state, action) => {
       const item = action.payload;
-      console.log(item);
       const existItem = state.cartItems.find((x) => x.product === item.product);
       if (existItem) {
         state.cartItems.map((x) =>

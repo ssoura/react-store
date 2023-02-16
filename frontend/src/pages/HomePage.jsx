@@ -22,13 +22,6 @@ const HomePage = () => {
   useEffect(() => {
     dispatch(productList({ keyword, pageNumber }));
   }, [dispatch, keyword, pageNumber]);
-  // console.log(products);
-  // return (
-  //   <>
-  //     <h1>Latest Products</h1>
-  //     {loading ? <Loader /> : error ? { error } : <></>}
-  //   </>
-  // );
 
   return (
     <>
@@ -40,7 +33,7 @@ const HomePage = () => {
           Go Back
         </Link>
       )}
-      <h1>Latest Products</h1>
+      <h1 className="text-3xl font-bold underline">Latest Products</h1>
       {loading ? (
         <Loader />
       ) : error ? (

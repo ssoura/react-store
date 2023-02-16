@@ -10,21 +10,24 @@ const Product = ({ product }) => {
         <Card.Img src={product.image} variant="top" />
       </Link>
 
-      <Card.Body>
+      <Card.Body className="flex flex-col items-center justify-center">
         <Link to={`/product/${product._id}`}>
           <Card.Title as="div">
             <strong>{product.name}</strong>
           </Card.Title>
         </Link>
-
         <Card.Text as="div">
           <Rating
             value={product.rating}
             text={`${product.numReviews} reviews`}
           />
         </Card.Text>
-
-        <Card.Text as="h3">₹{product.price}</Card.Text>
+        <div className="self-center text-xl bold">
+          <Card.Text as="h3">
+            <span className="text-green">₹</span>
+            {product.price}
+          </Card.Text>
+        </div>
       </Card.Body>
     </Card>
   );
