@@ -42,8 +42,8 @@ const CartPage = () => {
   };
 
   return (
-    <Row>
-      <Col md={8}>
+    <div className="flex flex-row gap-4">
+      <div className="flex-1">
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <Message>
@@ -52,12 +52,13 @@ const CartPage = () => {
         ) : (
           <ListGroup variant="flush">
             <Button
+              className=" self-end"
               type="button"
               variant="light"
               onClick={() => dispatch(clearItem())}
             >
               {" "}
-              remoeb all
+              Remove All
             </Button>
             {cartItems.map((item) => (
               <ListGroup.Item key={item.product}>
@@ -100,8 +101,8 @@ const CartPage = () => {
             ))}
           </ListGroup>
         )}
-      </Col>
-      <Col md={4}>
+      </div>
+      <div className="flex-none">
         <Card>
           <ListGroup variant="flush">
             <ListGroup.Item>
@@ -126,8 +127,8 @@ const CartPage = () => {
             </ListGroup.Item>
           </ListGroup>
         </Card>
-      </Col>
-    </Row>
+      </div>
+    </div>
   );
 };
 

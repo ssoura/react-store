@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import {
   productList,
   productDetails,
@@ -17,6 +17,11 @@ const initialState = {
   pages: null,
   topRated: [],
   product: { reviews: [] },
+  reviewCreate: {
+    loading: false,
+    error: false,
+    success: null,
+  },
 };
 
 export const productSlice = createSlice({
@@ -73,6 +78,19 @@ export const productSlice = createSlice({
         state.product = action.payload;
       })
       .addCase(productUpdate.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+
+    builder
+      .addCase(productDelete.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(productDelete.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = true;
+      })
+      .addCase(productDelete.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

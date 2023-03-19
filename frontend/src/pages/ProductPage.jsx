@@ -2,15 +2,7 @@ import React, { useState, useEffect } from "react";
 import { HiHome } from "react-icons/hi";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Row,
-  Col,
-  Image,
-  ListGroup,
-  Card,
-  Button,
-  Form,
-} from "react-bootstrap";
+import { Image, Button, Form } from "react-bootstrap";
 import Rating from "../components/Rating";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
@@ -26,19 +18,6 @@ const ProductPage = () => {
 
   const dispatch = useDispatch();
 
-  // const productReviewCreate2 = useSelector(
-  //   (state) => state.productReviewCreate
-  // );
-  // const {
-  //   success: successProductReview,
-  //   loading: loadingProductReview,
-  //   error: errorProductReview,
-  // } = productReviewCreate2;
-
-  const successProductReview = null;
-  const loadingProductReview = true;
-  const errorProductReview = false;
-
   useEffect(() => {
     // if (successProductReview) {
     //   setRating(0);
@@ -53,6 +32,13 @@ const ProductPage = () => {
 
   const productsData = useSelector((state) => state.product);
   const { loading, error, product } = productsData;
+
+  const {
+    success: successProductReview,
+    loading: loadingProductReview,
+    error: errorProductReview,
+  } = productsData.reviewCreate;
+  console.log("product", product);
 
   const user = useSelector((state) => state.user);
   const { userInfo } = user;
@@ -88,97 +74,89 @@ const ProductPage = () => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
-          <Row>
-            <Col md={6}>
+          <div className="flex">
+            <div className="flex-auto w-32">
               <Image src={product.image} alt={product.name} fluid />
-            </Col>
-            <Col md={3}>
-              <ListGroup variant="flush">
-                <ListGroup.Item>{/* <h3>{product.name}</h3> */}</ListGroup.Item>
-                <ListGroup.Item>
+            </div>
+            <div className="flex-auto w-40">
+              <ul variant="flush">
+                <li>Description: {product.description}</li>
+                <li>
                   <Rating
                     value={product.rating}
                     text={`${product.numReviews} reviews`}
                   />
-                </ListGroup.Item>
-                <ListGroup.Item>Price: Rs. {product.price}</ListGroup.Item>
-                <ListGroup.Item>
-                  Description: {product.description}
-                </ListGroup.Item>
-              </ListGroup>
-            </Col>
-            <Col md={3}>
-              <Card>
-                <ListGroup variant="flush">
-                  <ListGroup.Item>
-                    <Row>
-                      <Col>Price:</Col>
-                      <Col>
-                        <strong>₹{product.price}</strong>
-                      </Col>
-                    </Row>
-                  </ListGroup.Item>
+                </li>
+                <li>Price: Rs. {product.price}</li>
+              </ul>
+            </div>
+            <div className="flex-auto space-y-4 mx-2 w-20 border-solid border-1 p-2 m-2 border-gray-150">
+              <flex>
+                <div>
+                  <div>Price:</div>
+                  <div>
+                    <strong>₹{product.price}</strong>
+                  </div>
+                </div>
+              </flex>
 
-                  <ListGroup.Item>
-                    <Row>
-                      <Col>Status:</Col>
-                      <Col>
-                        {product.countInStock > 0 ? "In Stock" : "Out Of Stock"}
-                      </Col>
-                    </Row>
-                  </ListGroup.Item>
+              <flex>
+                <div>
+                  <div>Status:</div>
+                  <div>
+                    {product.countInStock > 0 ? "In Stock" : "Out Of Stock"}
+                  </div>
+                </div>
+              </flex>
 
-                  {product.countInStock > 0 && (
-                    <ListGroup.Item>
-                      <Row>
-                        <Col>Qty</Col>
-                        <Col>
-                          <Form.Control
-                            as="select"
-                            value={qty}
-                            onChange={(e) => setQty(e.target.value)}
-                          >
-                            {[...Array(product.countInStock).keys()].map(
-                              (x) => (
-                                <option key={x + 1} value={x + 1}>
-                                  {x + 1}
-                                </option>
-                              )
-                            )}
-                          </Form.Control>
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
-                  )}
+              {product.countInStock > 0 && (
+                <flex>
+                  <div>
+                    <div>Qty</div>
+                    <div>
+                      <select
+                        className="select"
+                        value={qty}
+                        onChange={(e) => setQty(e.target.value)}
+                      >
+                        {[...Array(product.countInStock).keys()].map((x) => (
+                          <option key={x + 1} value={x + 1}>
+                            {x + 1}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                </flex>
+              )}
 
-                  <ListGroup.Item>
-                    <Button
-                      onClick={addToCartHandler}
-                      className="btn-block"
-                      type="button"
-                      disabled={product.countInStock === 0}
-                    >
-                      Add To Cart
-                    </Button>
-                  </ListGroup.Item>
-                </ListGroup>
-              </Card>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={12}>
+              <flex>
+                <Button
+                  onClick={addToCartHandler}
+                  className="btn-block"
+                  type="button"
+                  disabled={product.countInStock === 0}
+                >
+                  Add To Cart
+                </Button>
+              </flex>
+            </div>
+          </div>
+
+          <div className="flex">
+            <div className="flex-auto w-64">
               <h2>Reviews</h2>
-              {product.reviews.length === 0 && <Message>No Reviews</Message>}
-              <ListGroup variant="flush">
+              {product.reviews.length === 0 && <h2>No Reviews</h2>}
+              <ul>
                 {product.reviews.map((review) => (
-                  <ListGroup.Item key={review._id}>
+                  <li key={review._id}>
                     <strong>{review.name}</strong>
                     <Rating value={review.rating} />
                     <p>{review.createdAt.substring(0, 10)}</p>
                     <p>{review.comment}</p>
-                  </ListGroup.Item>
+                  </li>
                 ))}
-                <ListGroup.Item>
+                <li>
                   <h2>Write a Customer Review</h2>
                   {successProductReview && (
                     <Message variant="success">
@@ -228,10 +206,10 @@ const ProductPage = () => {
                       Please <Link to="/login">sign in</Link> to write a review{" "}
                     </Message>
                   )}
-                </ListGroup.Item>
-              </ListGroup>
-            </Col>
-          </Row>
+                </li>
+              </ul>
+            </div>
+          </div>
         </>
       )}
     </>

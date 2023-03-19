@@ -15,7 +15,7 @@ const Header = () => {
 
   return (
     <header
-      className={`bg-gradient-to-r from-blue-700 to-indigo-900 transform shadow-xl sticky top-0 z-10 animate-dropIn`}
+      className={`bg-gradient-to-r from-blue-700 to-indigo-900 transform shadow-xl sticky top-0 z-10 animate-dropIn drop-shadow-lg`}
     >
       <div className="max-w-6xl mx-auto p-3 flex items-center space-x-4">
         <h1 className="text-white w-10">

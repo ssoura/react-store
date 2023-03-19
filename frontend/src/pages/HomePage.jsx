@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
@@ -40,13 +39,13 @@ const HomePage = () => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
-          <Row>
+          <div className="flex gap-2 items-stretch">
             {products.map((product) => (
-              <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+              <div key={product._id}>
                 <Product product={product} />
-              </Col>
+              </div>
             ))}
-          </Row>
+          </div>
           <Paginate
             pages={pages}
             page={page}

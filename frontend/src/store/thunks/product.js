@@ -1,28 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-// import { logout } from "./userActions";
 
-// export const deleteProduct = async (id) => {
-//   const {
-//     userLogin: { userInfo },
-//   } = getState();
-
-//   const config = {
-//     headers: {
-//       Authorization: `Bearer ${userInfo.token}`,
-//     },
-//   };
-
-//   await axios.delete(`${import.meta.env.VITE_APP_API}/api/products/${id}`, config);
-// };
-
-// export const listProducts = async ({ keyword = "", pageNumber = "" }) => {
-//   const { data } = await axios.get(
-//     `${import.meta.env.VITE_APP_API}/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
-//   );
-
-//   return data;
-// };
 export const productList = createAsyncThunk(
   "product/productList",
   async ({ keyword = "", pageNumber = "" }, thunkAPI) => {
@@ -45,10 +23,7 @@ export const productList = createAsyncThunk(
     }
   }
 );
-// export const listProductDetails = async (id) => {
-//   const { data } = await axios.get(`${import.meta.env.VITE_APP_API}/api/products/${id}`);
-//   return data;
-// };
+
 export const productDetails = createAsyncThunk(
   "product/productDetails",
   async (id, thunkAPI) => {
@@ -69,21 +44,6 @@ export const productDetails = createAsyncThunk(
     }
   }
 );
-
-// export const createProduct = async () => {
-//   const {
-//     userLogin: { userInfo },
-//   } = getState();
-
-//   const config = {
-//     headers: {
-//       Authorization: `Bearer ${userInfo.token}`,
-//     },
-//   };
-
-//   const { data } = await axios.post(`${import.meta.env.VITE_APP_API}/api/products`, {}, config);
-//   return data;
-// };
 
 export const productCreate = createAsyncThunk(
   "product/productCreate",
@@ -118,25 +78,6 @@ export const productCreate = createAsyncThunk(
   }
 );
 
-// export const updateProduct = async (product) => {
-//   const {
-//     userLogin: { userInfo },
-//   } = getState();
-
-//   const config = {
-//     headers: {
-//       "Content-Type": "application/json",
-//       Authorization: `Bearer ${userInfo.token}`,
-//     },
-//   };
-
-//   const { data } = await axios.put(
-//     `${import.meta.env.VITE_APP_API}/api/products/${product._id}`,
-//     product,
-//     config
-//   );
-//   return data;
-// };
 export const productUpdate = createAsyncThunk(
   "product/productUpdate",
   async (product, thunkAPI) => {
@@ -172,7 +113,7 @@ export const productUpdate = createAsyncThunk(
 );
 
 export const productDelete = createAsyncThunk(
-  "product/productUpdate",
+  "product/productDelete",
   async (id, thunkAPI) => {
     try {
       const {
@@ -222,20 +163,6 @@ export const productTopRated = createAsyncThunk(
   }
 );
 
-// export const createProductReview = async (productId, review) => {
-//   const {
-//     userLogin: { userInfo },
-//   } = getState();
-
-//   const config = {
-//     headers: {
-//       "Content-Type": "application/json",
-//       Authorization: `Bearer ${userInfo.token}`,
-//     },
-//   };
-
-//   await axios.post(`${import.meta.env.VITE_APP_API}/api/products/${productId}/reviews`, review, config);
-// };
 export const productReviewCreate = createAsyncThunk(
   "product/productReviewCreate",
   async (productId, review, thunkAPI) => {
