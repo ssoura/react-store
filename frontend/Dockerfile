@@ -11,8 +11,10 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-# Expose the backend port
-EXPOSE 5000
+# Build the Vite app
+RUN npm run build
 
-# Start the backend server
-CMD ["npm", "start"]
+# Serve the app using Vite's development server
+EXPOSE 5173
+
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "5173"]
