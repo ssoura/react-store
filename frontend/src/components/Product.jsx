@@ -1,36 +1,76 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Card } from "react-bootstrap";
-import Rating from "./Rating";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import Rating from './Rating';
 
 const Product = ({ product }) => {
   return (
-    <Card className="my-3 p-3 rounded">
+    <Card>
       <Link to={`/product/${product._id}`}>
-        <Card.Img src={product.image} variant="top" />
+        <CardImage src={product.image} alt={product.name} />
       </Link>
 
-      <Card.Body className="flex flex-col items-center justify-center">
+      <CardBody>
         <Link to={`/product/${product._id}`}>
-          <Card.Title as="div">
-            <strong>{product.name}</strong>
-          </Card.Title>
+          <CardTitle>{product.name}</CardTitle>
         </Link>
-        <Card.Text as="div">
-          <Rating
-            value={product.rating}
-            text={`${product.numReviews} reviews`}
-          />
-        </Card.Text>
-        <div className="self-center text-xl bold">
-          <Card.Text as="h3">
-            <span className="text-green">₹</span>
-            {product.price}
-          </Card.Text>
-        </div>
-      </Card.Body>
+
+        <CardText>
+          <Rating value={product.rating} text={`${product.numReviews} reviews`} />
+        </CardText>
+
+        <PriceText>₹{product.price}</PriceText>
+      </CardBody>
     </Card>
   );
 };
+
+
+const Card = styled.div`
+  margin: 1rem 0.5rem;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+    transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+`;
+
+const CardImage = styled.img`
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  object-fit: cover;
+`;
+
+const CardTitle = styled.div`
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5rem;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const CardBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+const CardText = styled.div`
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #666;
+`;
+
+const PriceText = styled.h3`
+  color: #333;
+  margin-top: 1rem;
+`;
 
 export default Product;
