@@ -1,4 +1,4 @@
-export const BASE_URL = process.env.API_URL || 'http://localhost:4000';
+export const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
 export const PRODUCTS_URL = BASE_URL+'/api/products';
 export const USERS_URL = BASE_URL+'/api/users';
 export const ORDERS_URL = BASE_URL+'/api/orders';
