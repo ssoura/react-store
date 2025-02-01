@@ -16,6 +16,13 @@ import Message from "../components/Message";
 import Meta from "../components/Meta";
 import { addToCart } from "../slices/cartSlice";
 
+
+const Wrapper = styled.div`
+  background-color: #FFF;
+  padding: 1rem;
+`;
+
+
 // Styled Components
 const BackButton = styled(Link)`
   display: inline-block;
@@ -171,6 +178,7 @@ const ProductScreen = () => {
 
   return (
     <>
+    <Wrapper>
       <BackButton to="/">Go Back</BackButton>
       {isLoading ? (
         <Loader />
@@ -301,6 +309,7 @@ const ProductScreen = () => {
           </ReviewsSection>
         </>
       )}
+      </Wrapper>
     </>
   );
 };

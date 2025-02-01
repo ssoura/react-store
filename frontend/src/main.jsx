@@ -1,5 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import {createGlobalStyle} from "styled-components";
 
 import './index.css'
 import './assets/styles/bootstrap.custom.css';
@@ -32,6 +33,17 @@ import UserEditScreen from './pages/admin/UserEditScreen';
 import store from './store';
 import { Provider } from 'react-redux';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+
+
+const GlobalStyles = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+  body{
+    background-color: #eee;
+    padding:0;
+    margin:0;
+    font-family: 'Poppins', sans-serif;
+  }
+`;
 
 
 
@@ -78,6 +90,7 @@ createRoot(document.getElementById('root')).render(
     <HelmetProvider>
       <Provider store={store}>
         <PayPalScriptProvider deferLoading={true}>
+        <GlobalStyles />
           <RouterProvider router={router} />
         </PayPalScriptProvider>
       </Provider>

@@ -5,8 +5,8 @@
   "description": "MERN stack ecom project",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "data:import": "node seeder",
     "data:destroy": "node seeder -d",
     "build": "npm install"
